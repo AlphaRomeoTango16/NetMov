@@ -7,7 +7,6 @@ interface Movie {
     overview: string
     genre_ids: Array<number>
 }
-
 export const useMovieStore = defineStore("movieStore", {
     state: () => ({
         movies: [] as Movie[],
@@ -23,7 +22,9 @@ export const useMovieStore = defineStore("movieStore", {
         return console.log('Movie add!')
       },
       deleteMovie(movie: Movie) {
-        this.movies.filter((item) => item.id === movie.id)
+        const newArray = this.movies.filter((item) => item.id !== movie.id)
+        this.movies = newArray;
+        return console.log('Movie delete!')
       }
     },
 })

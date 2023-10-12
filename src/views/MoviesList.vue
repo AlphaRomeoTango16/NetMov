@@ -43,7 +43,7 @@
         .get(`https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1`,
         {headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZmY5MzBlNTQ3YThiZDNlZGQwZjg3OTlkNWJhMzk0NCIsInN1YiI6IjY1MjNkMTAxYWI1ZTM0MDBmZTMzNzRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FuoR9kT3ecSUf13i0tkXKl2C8jRvU2sMvaUbf9vO360`
+                Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
             }})
         .then((response) => {
         this.movie = response.data.results.sort((a: { popularity: number; }, b: { popularity: number; }) => b.popularity-a.popularity).slice(0, 1)[0];

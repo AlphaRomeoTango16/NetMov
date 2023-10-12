@@ -11,13 +11,13 @@
             <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
 
-                <router-link to="/" v-slot="{href, navigate}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                <router-link to="/" v-slot="{href, navigate}" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                     <p :class="$route.params.id ===  '/' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate">Accueil</p>
                 </router-link>
                 
-                <p :class="isTabVisible === true ? 'text-[#41B883]' : 'text-[#FFFFFF]'" @click="isTabVisible ? isTabVisible = false : isTabVisible = true" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Liste</p>
+                <a type="button" :class="isTabVisible === true ? 'text-[#41B883]' : 'text-[#FFFFFF]'" @click="isTabVisible ? isTabVisible = false : isTabVisible = true" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Liste</a>
 
-                <router-link to="/favorite" v-slot="{href, navigate}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                <router-link to="/favorite" v-slot="{href, navigate}" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                     <p :class="$route.params.id ===  '/favorite' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate">Favoris</p>
                 </router-link>
 
@@ -74,7 +74,7 @@ export default defineComponent({
       .get(`https://api.themoviedb.org/3/genre/movie/list?language=fr`,
       {headers: {
               Accept: 'application/json',
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZmY5MzBlNTQ3YThiZDNlZGQwZjg3OTlkNWJhMzk0NCIsInN1YiI6IjY1MjNkMTAxYWI1ZTM0MDBmZTMzNzRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FuoR9kT3ecSUf13i0tkXKl2C8jRvU2sMvaUbf9vO360`
+              Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
           }})
       .then((response) => {
       this.genres = response.data.genres.filter((genre: {id: number, name: string}) => genre.name === "Action" || genre.name === "Animation" || genre.name === "Aventure" || genre.name === "Comédie" || genre.name === "Documentaire");

@@ -53,7 +53,7 @@
         .get(`https://api.themoviedb.org/3/discover/movie?with_genres=${this.$route.params.id}`,
         {headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZmY5MzBlNTQ3YThiZDNlZGQwZjg3OTlkNWJhMzk0NCIsInN1YiI6IjY1MjNkMTAxYWI1ZTM0MDBmZTMzNzRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FuoR9kT3ecSUf13i0tkXKl2C8jRvU2sMvaUbf9vO360`
+                Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
             }})
         .then((response) => {
         this.movies = response.data.results;
