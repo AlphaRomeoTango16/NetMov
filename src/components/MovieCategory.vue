@@ -19,11 +19,13 @@
   import axios from 'axios';
     
   interface Movie {
-      id: number;
-      poster_path: string,
-      title: string,
-      overview: string
-      genre_ids: Array<number>
+    id: number;
+    poster_path: string,
+    title: string,
+    overview: string,
+    vote_average: number,
+    release_date: string,
+    genre_ids: Array<number>
   }
 
   interface Genre {

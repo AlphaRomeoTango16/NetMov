@@ -6,7 +6,9 @@
         v-for="movie in movies"
         v-bind:key="movie.id"
       >
-        <BaseMovieCard :movie="movie"/>
+        <BaseMovieCard
+          :movie="movie"
+        />
       </div>
     </div>
   </div>
@@ -14,15 +16,19 @@
   
 <script lang="ts">
 import BaseMovieCard from './basic/BaseMovieCard.vue'
+import { useMovieStore } from '../store/index';
+import { storeToRefs } from 'pinia';
 import { defineComponent } from "vue";
 import axios from 'axios';
 
 interface Movie {
-    id: number;
-    poster_path: string,
-    title: string,
-    overview: string
-    genre_ids: Array<number>
+  id: number;
+  poster_path: string,
+  title: string,
+  overview: string,
+  vote_average: number,
+  release_date: string,
+  genre_ids: Array<number>
 }
 
 export default defineComponent({
@@ -33,6 +39,12 @@ data: () => ({
 searchTerm: "",
 movies: [] as Movie[]
 }),
+
+setup() {
+    const store = useMovieStore()
+    const refStore = storeToRefs(store).getMovies
+    return { refStore }
+},
 
 mounted() {
 this.listPopularMovies();

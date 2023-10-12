@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-gray-800">
+    <nav class="bg-gray-800 sticky top-0 z-50">
     <div class="ml-5 max-w-7xl px-2 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -12,13 +12,13 @@
             <div class="flex space-x-4">
 
                 <router-link to="/" v-slot="{href, navigate}" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
-                    <p :class="$route.params.id ===  '/' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate">Accueil</p>
+                    <p :class="$route.params.id ===  '/' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate(); isTabVisible = false;">Accueil</p>
                 </router-link>
                 
-                <a type="button" :class="isTabVisible === true ? 'text-[#41B883]' : 'text-[#FFFFFF]'" @click="isTabVisible ? isTabVisible = false : isTabVisible = true" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Liste</a>
+                <button :class="isTabVisible === true ? 'text-[#41B883]' : 'text-[#FFFFFF]'" @click="isTabVisible ? isTabVisible = false : isTabVisible = true" class="border-none !outline-none active:outline-none bg-transparent p-0 focus:ring-0 focus:ring-offset-0 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Catégories</button>
 
                 <router-link to="/favorite" v-slot="{href, navigate}" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
-                    <p :class="$route.params.id ===  '/favorite' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate">Favoris</p>
+                    <p :class="$route.params.id ===  '/favorite' ? 'text-[#41B883]' : 'text-[#FFFFFF]'" :href="href" @click="navigate(); isTabVisible = false">Favoris</p>
                 </router-link>
 
             </div>    
@@ -26,7 +26,7 @@
         </div>
         </div>
         <div v-show="isTabVisible" class="w-[100%] pb-2">
-            <div class="w-[30%] flex flex-row justify-between">
+            <div class="w-[50%] bg-[#34495E] flex flex-row justify-between px-5 py-1 rounded outline-none">
                 <div
                     v-for="genre in genres"
                     v-bind:key="genre.id"
