@@ -31,6 +31,7 @@ interface Movie {
   genre_ids: Array<number>
 }
 
+
 export default defineComponent({
 name: "PopularMovie",
 components: { BaseMovieCard },
@@ -61,7 +62,7 @@ axios
         }})
     .then((response) => {
     this.movies = response.data.results.sort((a: { popularity: number; }, b: { popularity: number; }) => b.popularity-a.popularity).slice(0, 4);
-    })
+  })
     .catch((err) => console.log(err));
 }
 },

@@ -3,7 +3,7 @@
     <img class="w-[100%] h-[10%]" :src="getIMGPath(`https://image.tmdb.org/t/p/original/${movie.poster_path}`)">
     <div class="mt-3 mr-2 pl-2 flex flex-row justify-between">
       <div class="justify-between">
-        <div class="font-bold text-l mb-2">{{ movie.title }}</div>
+        <div class="font-bold text-l mb-2">{{ movie.title.length > 20 ? `${movie.title.slice(0, 25)}...` : movie.title}}</div>
       </div>
         <button class="h-[0] !outline-none border-none bg-transparent p-0 focus:ring-0 focus:ring-offset-0">
           <StarIcon @click="addToFavorite(movie)" class="icon hover:text-[#FFFFFF]" v-show="!refFavMoviesStore.includes(movie)"/>
@@ -25,6 +25,9 @@
       v-show="isModalVisible"
       :movie="movie"
       :closeModal="closeModal"
+      :getIMGPath="getIMGPath"
+      :addToFavorite="addToFavorite"
+      :removeFromFavorite="removeFromFavorite"
     />
 </template>
 

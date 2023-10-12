@@ -1,5 +1,5 @@
 <template>
-      <div class="bg-hero bg-no-repeat bg-cover bg-center bg-fixed" :style="{backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.poster_path}')`}">
+      <div class="bg-hero bg-no-repeat bg-cover bg-center bg-fixed" :style="movie.poster_path ? {backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.poster_path}')`} : ''">
         <MovieCategory
             :genre="genre"
         />
@@ -49,10 +49,7 @@
         this.movie = response.data.results.sort((a: { popularity: number; }, b: { popularity: number; }) => b.popularity-a.popularity).slice(0, 1)[0];
         })
         .catch((err) => console.log(err));
-        },
-        getIMGPath(path: string) {
-        return path ? (path) : "";
-      }
+        }
       }
   });
   

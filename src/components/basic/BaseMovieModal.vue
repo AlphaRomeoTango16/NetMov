@@ -29,7 +29,7 @@
         </div>
         <div class="bg-[#34495E] mb-[20px] sm:flex sm:flex-row-reverse sm:px-6">
           <button v-show="!refFavMoviesStore.includes(movie)" type="button" class="mt-3 !outline-none border-none hover:outline-none inline-flex w-full justify-center rounded-md bg-[#41B883] px-3 py-2 text-sm font-semibold text-white hover:bg-black sm:mt-0 sm:w-auto focus:outline-none focus:ring focus:ring-[#41B883]" @click="addToFavorite(movie)">Ajouter aux favoris</button>
-          <button v-show="refFavMoviesStore.includes(movie)" type="button" class="mt-3 !outline-none border-none hover:outline-none inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-black sm:mt-0 sm:w-auto focus:outline-none focus:ring focus:ring-[#41B883]" @click="removeFromFavorite(movie)">Retirer aux favoris</button>
+          <button v-show="refFavMoviesStore.includes(movie)" type="button" class="mt-3 !outline-none border-none hover:outline-none inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-black sm:mt-0 sm:w-auto focus:outline-none focus:ring focus:ring-[#41B883]" @click="removeFromFavorite(movie)">Retirer des favoris</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,10 @@
         release_date: string,
         genre_ids: Array<number>
       },
-      closeModal: any
+      closeModal: any,
+      getIMGPath: any,
+      addToFavorite: any,
+      removeFromFavorite:any
     }>()
 
     const favMoviesStore = useMovieStore()
@@ -83,19 +86,4 @@
 
         return day+'/'+month+'/'+year
     }
-
-    function addToFavorite(movie: any) {
-      const store = useMovieStore()
-      store.addMovie(movie)
-    }
-
-    function removeFromFavorite(movie: any) {
-      const store = useMovieStore()
-      store.deleteMovie(movie)
-    }
-
-    function getIMGPath(path: string) {
-      return path ? (path) : "";
-    }
-
 </script>
