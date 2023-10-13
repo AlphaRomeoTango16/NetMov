@@ -2,7 +2,7 @@
   <div class="pt-10 pb-10 pl-10 pr-10 w-[100%] h-[700px] bg-[#34495E] bg-opacity-75">
    <h1>Tendances</h1>
     <div class="mt-10 w-[100%] flex flex-row justify-between">
-      <div class="w-[20%]" 
+      <div class="w-[20%]"
         v-for="movie in movies"
         v-bind:key="movie.id"
       >

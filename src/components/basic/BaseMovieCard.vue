@@ -6,8 +6,8 @@
         <div class="font-bold text-l mb-2">{{ movie.title.length > 20 ? `${movie.title.slice(0, 25)}...` : movie.title}}</div>
       </div>
         <button class="h-[0] !outline-none border-none bg-transparent p-0 focus:ring-0 focus:ring-offset-0">
-          <StarIcon @click="addToFavorite(movie)" class="icon hover:text-[#FFFFFF]" v-show="!refFavMoviesStore.includes(movie)"/>
-          <StarIconActive @click="removeFromFavorite(movie)" class="icon hover:text-[#FFFFFF]" v-show="refFavMoviesStore.includes(movie)"/>
+          <StarIcon @click="addToFavorite(movie)" class="icon hover:text-[#FFFFFF]" v-show="!checkIfMovieIsInRefStore(movie)"/>
+          <StarIconActive @click="removeFromFavorite(movie)" class="icon hover:text-[#FFFFFF]" v-show="checkIfMovieIsInRefStore(movie)"/>
         </button>
     </div>
 
@@ -71,6 +71,15 @@
     const refFavMoviesStore = storeToRefs(favMoviesStore).getMovies
 
     const isModalVisible = ref<boolean>(false)
+
+    function checkIfMovieIsInRefStore(movie: any) {
+      const movieStore = refFavMoviesStore.value.filter((item) => item.id === movie.id)
+      if (movieStore[0]?.id === movie.id) {
+        return true
+      } else {
+        return false
+      }
+    }
 
     function openModal() {
       isModalVisible.value = true;
