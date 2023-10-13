@@ -46,7 +46,8 @@
                 Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
             }})
         .then((response) => {
-        this.movie = response.data.results.sort((a: { popularity: number; }, b: { popularity: number; }) => b.popularity-a.popularity).slice(0, 1)[0];
+        const array = response.data.results;
+        this.movie = array[Math.floor(Math.random()*array.length)]
         })
         .catch((err) => console.log(err));
         }
